@@ -7,12 +7,18 @@ services:
     image: mysql:8.0
     container_name: Mysql_db
     environment:
+      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=Blog #schema name
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=Key45031*
-      
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
     ports:
-      - "3306:3306"      
+      - "3308:3308"
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - my_network
+volumes:
+  db_data:
 networks:
-  my_network:
-    driver: bridge      
+  my_network:     
