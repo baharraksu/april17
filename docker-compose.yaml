@@ -1,0 +1,18 @@
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+  db:
+    image: mysql:8.0
+    container_name: Mysql_db
+    environment:
+      - MYSQL_DATABASE=Blog #schema name
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=Key45031*
+      
+    ports:
+      - "3306:3306"      
+networks:
+  my_network:
+    driver: bridge      
